@@ -46,13 +46,21 @@ html, body {
 }
 td {
     max-width: calc(100vw / 8);
+    max-height: 20px !important;
     word-break: break-all;
     overflow: hidden;
     text-align: center;
+    cursor: pointer !important;
+}
+tr > td:nth-child(7) {
+    display: none;
 }
 th {
     text-align: center;
     vertical-align: middle;
+}
+tr {
+    cursor: pointer !important;
 }
 .table {
     margin-top: 20px;
@@ -68,4 +76,7 @@ th {
     left: 50%;
     transform: translate(-50%);
     margin-top: 15px;
+}
+.modal-body {
+    word-break: break-all !important;
 }

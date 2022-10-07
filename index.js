@@ -26,15 +26,15 @@ const regexFormat1 = new RegExp(/^[^\W\d_]*$/);
           lastAddedId = ((Number(document.querySelector('.table-body > tr:last-child')?.classList?.value?.substring(8)) || 0));
           let element = `
         <tr class="entryId-${lastAddedId+1}">
-        <td scope="col">${lastAddedId+1}</td>
-        <td scope="col">${form.firstName.value}</td>
-        <td scope="col">${form.lastName.value}</td>
-        <td scope="col">${form.address.value}</td>
-        <td scope="col">${form.date.value || 'Not provided'}</td>
-        <td scope="col">${form.sex.value || 'Not provided'}</td>
-        <td scope="col">${form.notes.value || 'Not provided'}</td>
+        <td scope="col" onclick="popupContent(${lastAddedId+1})" data-bs-toggle="modal" data-bs-target="#exampleModal">${lastAddedId+1}</td>
+        <td scope="col" onclick="popupContent(${lastAddedId+1})" data-bs-toggle="modal" data-bs-target="#exampleModal">${form.firstName.value}</td>
+        <td scope="col" onclick="popupContent(${lastAddedId+1})" data-bs-toggle="modal" data-bs-target="#exampleModal">${form.lastName.value}</td>
+        <td scope="col" onclick="popupContent(${lastAddedId+1})" data-bs-toggle="modal" data-bs-target="#exampleModal">${form.address.value}</td>
+        <td scope="col" onclick="popupContent(${lastAddedId+1})" data-bs-toggle="modal" data-bs-target="#exampleModal">${form.date.value || 'Not provided'}</td>
+        <td scope="col" onclick="popupContent(${lastAddedId+1})" data-bs-toggle="modal" data-bs-target="#exampleModal">${form.sex.value || 'Not provided'}</td>
+        <td scope="col" onclick="popupContent(${lastAddedId+1})" data-bs-toggle="modal" data-bs-target="#exampleModal">${form.notes.value || 'Not provided'}</td>
         <td scope="col">
-            <button type="button" class="btn btn-danger" onclick="deleteEntry(${++lastAddedId})">Delete</button>
+            <button type="button" class="btn btn-danger" onclick="deleteEntry(${++lastAddedId}, event)">Delete</button>
         </td>
       </tr>`;
       tbodyRef.innerHTML += element; 
@@ -107,7 +107,8 @@ const regexFormat1 = new RegExp(/^[^\W\d_]*$/);
               notes: form.querySelector('#notes')
           };
       }
-      function deleteEntry(id) {
+      function deleteEntry(id, event) {
+        event.preventDefault();
           document.querySelector('.entryId-' + id)?.remove();
       }
       function handleUnload() {
@@ -118,3 +119,10 @@ const regexFormat1 = new RegExp(/^[^\W\d_]*$/);
         lastAddedId = Number(localStorage.getItem('cachedLastId')) || 0;
         document.querySelector('.table-body').innerHTML = localStorage.getItem('cachedTable') || '';
       }
+      function popupContent(content) {
+        document.querySelector('.modal-body').innerText = document.querySelector('.entryId-' + content).querySelector('td:nth-child(7)').innerText || 'Not provided';
+        //document.querySelector('.modal-body').innerText= "ssssssssssssssss";
+      }
+      setInterval(() => {
+        //document.querySelector('.modal-body').innerText= Math.random();
+      }, 2000);
