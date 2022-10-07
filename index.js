@@ -123,6 +123,3 @@ const regexFormat1 = new RegExp(/^[^\W\d_]*$/);
         document.querySelector('.modal-body').innerText = document.querySelector('.entryId-' + content).querySelector('td:nth-child(7)').innerText || 'Not provided';
         //document.querySelector('.modal-body').innerText= "ssssssssssssssss";
       }
-      setInterval(() => {
-        //document.querySelector('.modal-body').innerText= Math.random();
-      }, 2000);
