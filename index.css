@@ -53,7 +53,7 @@ td {
     cursor: pointer !important;
 }
 tr > td:nth-child(7) {
-    display: none;
+    display: none !important;
 }
 th {
     text-align: center;
